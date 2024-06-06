@@ -1,0 +1,1 @@
+export const urlAPi = 'http://172.25.124.116:8080'
