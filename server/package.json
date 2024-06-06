@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "tsx --watch src/ma_hub.ts"
+    "test": "tsx --watch src/ma_hub.ts",
+    "build": "tsup ./src"
   },
   "author": "",
   "license": "ISC",
