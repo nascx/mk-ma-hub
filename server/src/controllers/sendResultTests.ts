@@ -19,7 +19,7 @@ export const sendResults = async (req: Request, res: Response) => {
         const doneTests = await getDoneTests(dateForQuery as string) as any
         const results = allCollaborators.map((collaborator: any) => {
             if (doneTests[collaborator.id]) {
-                return {id: collaborator.id, name: collaborator.name, status: doneTests[collaborator.registration] === 'positive' ? 'OK' : 'NG', label: collaborator.name, value: collaborator.name}
+                return {id: collaborator.id, name: collaborator.name, status: doneTests[collaborator.id] === 'positive' ? 'OK' : 'NG', label: collaborator.name, value: collaborator.name}
             } else {
                 return {id: collaborator.id, name: collaborator.name, status: 'Pendente', label: collaborator.name, value: collaborator.name}
             }
