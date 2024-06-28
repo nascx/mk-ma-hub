@@ -1,5 +1,5 @@
 import { Request, Response, json } from 'express'
-import { getAllCollaborators, getDoneTests } from '../../models/eletrocheck-shoes/getCollaborators';
+import { getAllCollaborators, getDoneTests } from '../models/getCollaborators';
 
 const extractMonthAndYear = (date: string) => {
     const regex = /\d{2}\/(\d{2})\/(\d{4})/;
@@ -17,9 +17,9 @@ export const sendResults = async (req: Request, res: Response) => {
         const dateForQuery = extractMonthAndYear(currenteDate)
         const allCollaborators = await getAllCollaborators() as []
         const doneTests = await getDoneTests(dateForQuery as string) as any
-        const results = allCollaborators.map((collaborator: {id: string, name: string }) => {
+        const results = allCollaborators.map((collaborator: any) => {
             if (doneTests[collaborator.id]) {
-                return {id: collaborator.id, name: collaborator.name, status: doneTests[collaborator.id] === 'positive' ? 'OK' : 'NG', label: collaborator.name, value: collaborator.name}
+                return {id: collaborator.id, name: collaborator.name, status: doneTests[collaborator.registration] === 'positive' ? 'OK' : 'NG', label: collaborator.name, value: collaborator.name}
             } else {
                 return {id: collaborator.id, name: collaborator.name, status: 'Pendente', label: collaborator.name, value: collaborator.name}
             }
